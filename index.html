@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>B.E.T. Plumbing LLC — Pittsburgh's Premier Plumber</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0a0f1e;
+    --navy-mid: #111827;
+    --gold: #c9a84c;
+    --gold-light: #e8c96b;
+    --gold-pale: #f5e6b8;
+    --cream: #faf7f0;
+    --white: #ffffff;
+    --text-muted: #8b92a5;
+    --pipe-blue: #1e3a5f;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--navy);
+    color: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.25rem 4rem;
+    background: rgba(10,15,30,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+    animation: fadeDown 0.8s ease both;
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 900;
+    letter-spacing: 0.04em;
+    color: var(--white);
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 2.5rem; align-items: center; }
+  .nav-links a {
+    color: var(--text-muted); text-decoration: none;
+    font-size: 0.85rem; letter-spacing: 0.12em; text-transform: uppercase;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    background: var(--gold); color: var(--navy) !important;
+    padding: 0.65rem 1.6rem; border-radius: 2px;
+    font-weight: 500 !important; letter-spacing: 0.08em !important;
+    transition: background 0.3s !important;
+  }
+  .nav-cta:hover { background: var(--gold-light) !important; color: var(--navy) !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    position: relative; overflow: hidden;
+    padding-top: 80px;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 70% at 80% 50%, rgba(30,58,95,0.5) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 20% 80%, rgba(201,168,76,0.07) 0%, transparent 60%);
+  }
+  .hero-grid {
+    position: absolute; inset: 0; opacity: 0.04;
+    background-image: linear-gradient(rgba(201,168,76,1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,168,76,1) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-left {
+    position: relative; z-index: 2;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 6rem 4rem 6rem 5rem;
+    animation: fadeUp 1s 0.3s ease both;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    border: 1px solid rgba(201,168,76,0.4); border-radius: 2px;
+    padding: 0.4rem 1rem; width: fit-content; margin-bottom: 2rem;
+    font-family: 'DM Mono', monospace; font-size: 0.72rem;
+    color: var(--gold); letter-spacing: 0.15em; text-transform: uppercase;
+  }
+  .hero-badge::before {
+    content: ''; width: 6px; height: 6px; background: var(--gold);
+    border-radius: 50%; animation: pulse 2s infinite;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 5vw, 4.5rem);
+    font-weight: 900; line-height: 1.08;
+    color: var(--white); margin-bottom: 1.5rem;
+  }
+  .hero h1 em { color: var(--gold); font-style: italic; }
+  .hero-sub {
+    font-size: 1.05rem; color: var(--text-muted);
+    line-height: 1.8; max-width: 440px; margin-bottom: 2.5rem;
+  }
+  .hero-actions { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--gold); color: var(--navy);
+    padding: 1rem 2.2rem; border: none; border-radius: 2px;
+    font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
+    font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+    cursor: pointer; text-decoration: none;
+    transition: all 0.3s; display: inline-block;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(201,168,76,0.3); }
+  .btn-ghost {
+    color: var(--cream); border: 1px solid rgba(201,168,76,0.35);
+    padding: 1rem 2rem; border-radius: 2px;
+    font-size: 0.9rem; font-weight: 500; letter-spacing: 0.06em;
+    text-decoration: none; transition: all 0.3s; display: inline-block;
+  }
+  .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+  .hero-stats {
+    display: flex; gap: 2.5rem; margin-top: 3.5rem;
+    padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .stat-item { display: flex; flex-direction: column; gap: 0.2rem; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; font-weight: 700; color: var(--gold);
+  }
+  .stat-label { font-size: 0.75rem; color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase; }
+
+  .hero-right {
+    position: relative; z-index: 2;
+    display: flex; align-items: center; justify-content: center;
+    padding: 4rem;
+    animation: fadeUp 1s 0.5s ease both;
+  }
+  .hero-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 4px;
+    padding: 2.5rem;
+    width: 100%; max-width: 400px;
+    backdrop-filter: blur(10px);
+    position: relative; overflow: hidden;
+  }
+  .hero-card::before {
+    content: ''; position: absolute;
+    top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+  }
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; color: var(--white);
+    margin-bottom: 0.4rem;
+  }
+  .card-sub { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 1.8rem; }
+  .form-group { margin-bottom: 1rem; }
+  .form-group input, .form-group select, .form-group textarea {
+    width: 100%; background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1); border-radius: 2px;
+    padding: 0.8rem 1rem; color: var(--cream);
+    font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
+    transition: border-color 0.3s; outline: none;
+  }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    border-color: var(--gold);
+  }
+  .form-group select option { background: var(--navy-mid); }
+  .form-group textarea { resize: none; height: 80px; }
+  .form-cta {
+    width: 100%; background: var(--gold); color: var(--navy);
+    border: none; padding: 1rem; border-radius: 2px;
+    font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
+    font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+    cursor: pointer; transition: all 0.3s;
+  }
+  .form-cta:hover { background: var(--gold-light); }
+  .card-note {
+    text-align: center; margin-top: 1rem;
+    font-size: 0.75rem; color: var(--text-muted);
+  }
+
+  /* TRUST BAR */
+  .trust-bar {
+    background: rgba(201,168,76,0.08);
+    border-top: 1px solid rgba(201,168,76,0.15);
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+    padding: 1rem 5rem;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .trust-item {
+    display: flex; align-items: center; gap: 0.6rem;
+    font-size: 0.8rem; color: var(--text-muted); letter-spacing: 0.05em;
+  }
+  .trust-icon { color: var(--gold); font-size: 1.1rem; }
+
+  /* SERVICES */
+  .section { padding: 7rem 5rem; }
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 900; color: var(--white);
+    line-height: 1.15; margin-bottom: 1rem;
+  }
+  .section-title em { color: var(--gold); font-style: italic; }
+  .section-desc {
+    color: var(--text-muted); font-size: 1rem;
+    line-height: 1.8; max-width: 520px;
+  }
+
+  .services-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.5px; margin-top: 4rem;
+    background: rgba(201,168,76,0.1);
+    border: 1px solid rgba(201,168,76,0.1);
+  }
+  .service-card {
+    background: var(--navy); padding: 2.5rem;
+    transition: background 0.3s; cursor: default;
+    position: relative; overflow: hidden;
+  }
+  .service-card::after {
+    content: ''; position: absolute;
+    bottom: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    transform: scaleX(0); transition: transform 0.4s;
+  }
+  .service-card:hover { background: rgba(201,168,76,0.04); }
+  .service-card:hover::after { transform: scaleX(1); }
+  .service-icon {
+    width: 48px; height: 48px;
+    border: 1px solid rgba(201,168,76,0.3); border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; margin-bottom: 1.5rem;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .service-card:hover .service-icon {
+    border-color: var(--gold); background: rgba(201,168,76,0.1);
+  }
+  .service-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem; color: var(--white);
+    margin-bottom: 0.75rem;
+  }
+  .service-desc { font-size: 0.88rem; color: var(--text-muted); line-height: 1.75; }
+
+  /* WHY US */
+  .why-section {
+    padding: 7rem 5rem;
+    background: linear-gradient(180deg, transparent, rgba(30,58,95,0.15), transparent);
+    position: relative;
+  }
+  .why-section::before {
+    content: 'B.E.T.';
+    position: absolute; right: 3rem; top: 50%; transform: translateY(-50%);
+    font-family: 'Playfair Display', serif; font-size: 18rem;
+    font-weight: 900; color: rgba(255,255,255,0.02);
+    letter-spacing: -0.05em; pointer-events: none; line-height: 1;
+  }
+  .why-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+  .why-pillars { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3rem; }
+  .pillar {
+    padding: 1.5rem;
+    border: 1px solid rgba(255,255,255,0.06); border-radius: 3px;
+    transition: border-color 0.3s;
+  }
+  .pillar:hover { border-color: rgba(201,168,76,0.3); }
+  .pillar-num {
+    font-family: 'DM Mono', monospace; font-size: 0.7rem;
+    color: var(--gold); letter-spacing: 0.15em; margin-bottom: 0.75rem;
+  }
+  .pillar-title { font-size: 0.95rem; color: var(--white); font-weight: 500; margin-bottom: 0.4rem; }
+  .pillar-text { font-size: 0.82rem; color: var(--text-muted); line-height: 1.7; }
+  .why-visual {
+    position: relative; display: flex; align-items: center; justify-content: center;
+  }
+  .rating-showcase {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 3rem; border-radius: 4px; text-align: center;
+    position: relative; width: 100%;
+  }
+  .rating-showcase::before {
+    content: ''; position: absolute;
+    top: 0; left: 50%; transform: translateX(-50%);
+    width: 60%; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+  .stars { color: var(--gold); font-size: 1.8rem; letter-spacing: 4px; margin-bottom: 0.5rem; }
+  .rating-big {
+    font-family: 'Playfair Display', serif;
+    font-size: 5rem; font-weight: 900; color: var(--white);
+    line-height: 1; margin-bottom: 0.25rem;
+  }
+  .rating-label { font-size: 0.8rem; color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 2rem; }
+  .review-cards { display: flex; flex-direction: column; gap: 1rem; }
+  .mini-review {
+    background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
+    padding: 1rem 1.2rem; border-radius: 3px; text-align: left;
+  }
+  .mini-review-text { font-size: 0.82rem; color: var(--text-muted); line-height: 1.6; font-style: italic; margin-bottom: 0.5rem; }
+  .mini-review-author { font-size: 0.72rem; color: var(--gold); letter-spacing: 0.08em; }
+
+  /* PROCESS */
+  .process-section { padding: 7rem 5rem; background: rgba(255,255,255,0.01); }
+  .process-steps {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 0; margin-top: 4rem;
+    position: relative;
+  }
+  .process-steps::before {
+    content: ''; position: absolute;
+    top: 2.5rem; left: 12.5%; right: 12.5%;
+    height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+  .process-step { padding: 0 1.5rem; text-align: center; }
+  .step-num {
+    width: 48px; height: 48px;
+    background: var(--navy); border: 1px solid var(--gold);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-family: 'DM Mono', monospace; font-size: 0.8rem; color: var(--gold);
+    margin: 0 auto 1.5rem;
+  }
+  .step-title { font-size: 1rem; color: var(--white); margin-bottom: 0.5rem; font-weight: 500; }
+  .step-desc { font-size: 0.82rem; color: var(--text-muted); line-height: 1.7; }
+
+  /* REVIEWS */
+  .reviews-section { padding: 7rem 5rem; }
+  .reviews-marquee { margin-top: 3.5rem; overflow: hidden; position: relative; }
+  .reviews-marquee::before,
+  .reviews-marquee::after {
+    content: ''; position: absolute; top: 0; bottom: 0; width: 120px; z-index: 2;
+  }
+  .reviews-marquee::before { left: 0; background: linear-gradient(90deg, var(--navy), transparent); }
+  .reviews-marquee::after { right: 0; background: linear-gradient(-90deg, var(--navy), transparent); }
+  .marquee-track {
+    display: flex; gap: 1.5rem;
+    animation: marquee 35s linear infinite;
+    width: max-content;
+  }
+  .marquee-track:hover { animation-play-state: paused; }
+  .review-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    padding: 1.8rem; border-radius: 3px; width: 320px;
+    flex-shrink: 0; transition: border-color 0.3s;
+  }
+  .review-card:hover { border-color: rgba(201,168,76,0.3); }
+  .review-stars { color: var(--gold); font-size: 0.9rem; letter-spacing: 2px; margin-bottom: 0.75rem; }
+  .review-text { font-size: 0.85rem; color: var(--text-muted); line-height: 1.75; margin-bottom: 1rem; font-style: italic; }
+  .review-author { font-size: 0.75rem; color: var(--white); letter-spacing: 0.05em; }
+  .review-time { font-size: 0.7rem; color: var(--text-muted); margin-top: 0.2rem; }
+
+  /* EMERGENCY */
+  .emergency-section {
+    margin: 0 5rem 7rem;
+    background: linear-gradient(135deg, var(--pipe-blue) 0%, rgba(201,168,76,0.1) 100%);
+    border: 1px solid rgba(201,168,76,0.25);
+    border-radius: 4px; padding: 5rem;
+    display: grid; grid-template-columns: 1fr auto;
+    gap: 3rem; align-items: center;
+    position: relative; overflow: hidden;
+  }
+  .emergency-section::before {
+    content: '24/7';
+    position: absolute; right: 20rem; top: 50%; transform: translateY(-50%);
+    font-family: 'Playfair Display', serif; font-size: 12rem;
+    font-weight: 900; color: rgba(255,255,255,0.04); pointer-events: none;
+  }
+  .emergency-label {
+    font-family: 'DM Mono', monospace; font-size: 0.7rem;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-light);
+    margin-bottom: 1rem;
+  }
+  .emergency-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem; font-weight: 900; color: var(--white);
+    line-height: 1.2; margin-bottom: 1rem;
+  }
+  .emergency-desc { font-size: 0.95rem; color: rgba(255,255,255,0.65); line-height: 1.7; max-width: 480px; }
+  .emergency-cta { display: flex; flex-direction: column; gap: 1rem; align-items: flex-end; }
+  .phone-display {
+    text-align: right;
+  }
+  .phone-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; font-weight: 700; color: var(--gold);
+    display: block; text-decoration: none;
+    transition: color 0.3s;
+  }
+  .phone-num:hover { color: var(--gold-light); }
+  .phone-label { font-size: 0.72rem; color: rgba(255,255,255,0.4); letter-spacing: 0.12em; text-transform: uppercase; }
+
+  /* FOOTER */
+  footer {
+    background: rgba(0,0,0,0.3);
+    border-top: 1px solid rgba(201,168,76,0.1);
+    padding: 4rem 5rem 2rem;
+  }
+  .footer-inner {
+    display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 3rem; margin-bottom: 3rem;
+  }
+  .footer-brand .nav-logo { font-size: 1.3rem; margin-bottom: 1rem; display: block; }
+  .footer-brand p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.8; }
+  .footer-col h4 {
+    font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1.25rem;
+    font-family: 'DM Mono', monospace;
+  }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .footer-col ul li a {
+    font-size: 0.85rem; color: var(--text-muted); text-decoration: none;
+    transition: color 0.3s;
+  }
+  .footer-col ul li a:hover { color: var(--cream); }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding-top: 1.5rem;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.75rem; color: var(--text-muted);
+  }
+  .footer-bottom a { color: var(--gold); text-decoration: none; }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  .reveal {
+    opacity: 0; transform: translateY(25px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* MOBILE */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-left { padding: 6rem 2rem 3rem; }
+    .hero-right { padding: 2rem; }
+    .section, .why-section, .process-section, .reviews-section { padding: 4rem 2rem; }
+    .services-grid { grid-template-columns: 1fr; }
+    .why-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .process-steps { grid-template-columns: 1fr 1fr; }
+    .process-steps::before { display: none; }
+    .emergency-section { margin: 0 2rem 4rem; padding: 2.5rem; grid-template-columns: 1fr; }
+    .emergency-cta { align-items: flex-start; }
+    .emergency-section::before { display: none; }
+    .footer-inner { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .trust-bar { padding: 1rem 2rem; }
+    .hero-stats { gap: 1.5rem; }
+    .why-pillars { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">B.E.T.<span>•</span>PLUMBING</div>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#why">About</a>
+    <a href="#process">Process</a>
+    <a href="#reviews">Reviews</a>
+    <a href="tel:4127336355" class="nav-cta">Call Now</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+
+  <div class="hero-left">
+    <div class="hero-badge">Pittsburgh's #1 Rated Plumber — 5.0 Stars · 104 Reviews</div>
+    <h1>When Pipes Fail,<br>We <em>Answer</em> the Call</h1>
+    <p class="hero-sub">B.E.T. Plumbing delivers fast, honest, expert plumbing across Pittsburgh. Brandon picks up the phone — even at 9 PM — and shows up ready to solve your problem.</p>
+    <div class="hero-actions">
+      <a href="tel:4127336355" class="btn-primary">📞 Call (412) 733-6355</a>
+      <a href="#services" class="btn-ghost">View Services</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <span class="stat-num">5.0</span>
+        <span class="stat-label">Star Rating</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">104+</span>
+        <span class="stat-label">Reviews</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">10+</span>
+        <span class="stat-label">Years Serving Pittsburgh</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-card">
+      <div class="card-title">Request a Free Quote</div>
+      <div class="card-sub">We respond fast — often same day.</div>
+      <form id="quoteForm">
+        <!-- Formsubmit config -->
+        <input type="hidden" name="_subject" value="🔧 New Quote Request — B.E.T. Plumbing">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+
+        <div class="form-group">
+          <input type="text" name="name" placeholder="Your Name" required>
+        </div>
+        <div class="form-group">
+          <input type="tel" name="phone" placeholder="Phone Number" required>
+        </div>
+        <div class="form-group">
+          <input type="email" name="email" placeholder="Email Address (optional)">
+        </div>
+        <div class="form-group">
+          <select name="service" required>
+            <option value="" disabled selected>Select Service Needed</option>
+            <option>Water Heater</option>
+            <option>Drain Cleaning</option>
+            <option>Burst / Leaking Pipe</option>
+            <option>Sewer Line</option>
+            <option>Gas Line</option>
+            <option>Bathroom / Kitchen Plumbing</option>
+            <option>Emergency</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <textarea name="message" placeholder="Brief description of the issue..."></textarea>
+        </div>
+        <button type="submit" class="form-cta" id="formBtn">Get My Free Quote →</button>
+      </form>
+      <p class="card-note">No commitment. No spam. Just honest help.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item"><span class="trust-icon">✓</span> Licensed & Insured</div>
+  <div class="trust-item"><span class="trust-icon">✓</span> Same-Day Service Available</div>
+  <div class="trust-item"><span class="trust-icon">✓</span> Transparent, Upfront Pricing</div>
+  <div class="trust-item"><span class="trust-icon">✓</span> No Hidden Fees — Ever</div>
+  <div class="trust-item"><span class="trust-icon">✓</span> Family-Owned, Pittsburgh Proud</div>
+  <div class="trust-item"><span class="trust-icon">✓</span> 3rd Generation Plumbers</div>
+</div>
+
+<!-- SERVICES -->
+<section class="section" id="services">
+  <div class="reveal">
+    <div class="section-label">// What We Do</div>
+    <h2 class="section-title">Full-Service Plumbing,<br><em>Done Right</em></h2>
+    <p class="section-desc">From emergency repairs to complete installations, B.E.T. handles it all — with the skill of a master tradesman and the honesty of a neighbor.</p>
+  </div>
+
+  <div class="services-grid reveal">
+    <div class="service-card">
+      <div class="service-icon">🔥</div>
+      <div class="service-name">Water Heater Service</div>
+      <p class="service-desc">Same-day installation, repair, and replacement. Brandon has answered calls before 8 AM and had hot water running before noon. Traditional and tankless systems.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🚿</div>
+      <div class="service-name">Drain Cleaning</div>
+      <p class="service-desc">Clogged drain? Main sewer backed up? We clear it fast, often within an hour of arrival. No mess left behind — ever.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🔧</div>
+      <div class="service-name">Pipe Repair & Replacement</div>
+      <p class="service-desc">Burst pipes, pinhole leaks, PEX repiping. We've replaced entire water systems and fixed frozen pipe emergencies on Christmas Day.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🏠</div>
+      <div class="service-name">Bathroom & Kitchen</div>
+      <p class="service-desc">Sink installations, faucet replacements, garbage disposals, toilets, and full bathroom rough-ins. We work clean and finish fast.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🔩</div>
+      <div class="service-name">Gas Line Work</div>
+      <p class="service-desc">Licensed gas line installation, repair, and relocation. Fireplace hookups, appliance lines, full basement gas rough-ins. All work permitted.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🏗️</div>
+      <div class="service-name">Basement & New Construction</div>
+      <p class="service-desc">Full bathroom additions, laundry room relocations, floor drain installation. We move the whole operation — plumbing, gas, drainage.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">💧</div>
+      <div class="service-name">Water Treatment Systems</div>
+      <p class="service-desc">Reverse osmosis, filtration systems, pressure reducing valves, and expansion tanks. Clean water, proper pressure — every time.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🚨</div>
+      <div class="service-name">Emergency Plumbing</div>
+      <p class="service-desc">Plumbing doesn't wait for business hours. Brandon answers his phone nights and weekends. Real emergencies get real responses.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🧹</div>
+      <div class="service-name">Sewer Line Services</div>
+      <p class="service-desc">Sewer camera inspection, line clearing, and repair. We've identified and fixed cracked sewer lines that others missed entirely.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why-section" id="why">
+  <div class="why-inner">
+    <div class="reveal">
+      <div class="section-label">// Why B.E.T.</div>
+      <h2 class="section-title">The Plumber<br><em>Pittsburgh Trusts</em></h2>
+      <p class="section-desc">In a city full of big plumbing companies, B.E.T. is the one your neighbor actually recommends. Brandon built this company on one principle: treat every home like it's your own.</p>
+      <div class="why-pillars">
+        <div class="pillar">
+          <div class="pillar-num">01</div>
+          <div class="pillar-title">Answers the Phone</div>
+          <p class="pillar-text">Brandon picks up — at 9 PM, before 8 AM, on weekends. When you have a crisis, you need a real person.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">02</div>
+          <div class="pillar-title">Honest Pricing</div>
+          <p class="pillar-text">No hidden fees. No upselling. Fair quotes given upfront. One of our customers called it "less than half the competitor."</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">03</div>
+          <div class="pillar-title">Third Generation</div>
+          <p class="pillar-text">Plumbing runs in the family. That depth of knowledge shows in every repair — especially on Pittsburgh's older homes.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">04</div>
+          <div class="pillar-title">Clean & Respectful</div>
+          <p class="pillar-text">Shoes off at the door. Workspace cleaned before leaving. Your home is treated with care, every single visit.</p>
+        </div>
+      </div>
+    </div>
+    <div class="why-visual reveal">
+      <div class="rating-showcase">
+        <div class="stars">★★★★★</div>
+        <div class="rating-big">5.0</div>
+        <div class="rating-label">104 Google Reviews · Pittsburgh, PA</div>
+        <div class="review-cards">
+          <div class="mini-review">
+            <p class="mini-review-text">"Brandon is a shining example of a dying breed — honest, hardworking, trustworthy. Can't recommend them highly enough."</p>
+            <span class="mini-review-author">— Nicholas W.</span>
+          </div>
+          <div class="mini-review">
+            <p class="mini-review-text">"Flew home from vacation in Florida to help me on Thanksgiving. I don't know anyone who has done that."</p>
+            <span class="mini-review-author">— Dana C.</span>
+          </div>
+          <div class="mini-review">
+            <p class="mini-review-text">"Quoted less than half of their competitor and were quick, professional, and knowledgeable. Won't consider another company."</p>
+            <span class="mini-review-author">— Spencer D.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process-section" id="process">
+  <div style="text-align:center" class="reveal">
+    <div class="section-label">// How It Works</div>
+    <h2 class="section-title">Simple. Fast. <em>Reliable.</em></h2>
+    <p class="section-desc" style="margin:0 auto">Four steps from problem to resolved — and we communicate every step of the way.</p>
+  </div>
+  <div class="process-steps reveal">
+    <div class="process-step">
+      <div class="step-num">01</div>
+      <div class="step-title">You Call or Text</div>
+      <p class="step-desc">Brandon answers personally. Describe the issue, we'll ask a few quick questions and set a time that works for you.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num">02</div>
+      <div class="step-title">We Arrive On Time</div>
+      <p class="step-desc">Prompt. Professional. We come with the right tools and experience to diagnose your issue from the moment we walk in.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num">03</div>
+      <div class="step-title">Clear, Honest Quote</div>
+      <p class="step-desc">We explain exactly what's wrong and what it will cost — in plain language. No pressure, no surprises, no hidden fees.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num">04</div>
+      <div class="step-title">Job Done Right</div>
+      <p class="step-desc">We complete the work to code, clean up completely, and follow up to make sure you're 100% satisfied.</p>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews-section" id="reviews">
+  <div style="text-align:center" class="reveal">
+    <div class="section-label">// What Pittsburgh Says</div>
+    <h2 class="section-title">Real Reviews from<br><em>Real Neighbors</em></h2>
+  </div>
+  <div class="reviews-marquee reveal">
+    <div class="marquee-track">
+      <!-- Set 1 -->
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Called late in the evening and Brandon actually answered at 9 PM. Not only did he pick up, but he arrived relatively quickly to help."</p>
+        <div class="review-author">Marco A.</div>
+        <div class="review-time">2 months ago</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Friendly, honest, prompt, dependable, calls you back, and does good work at a fair price. BET has become our go-to and will be for years to come."</p>
+        <div class="review-author">Adam B.</div>
+        <div class="review-time">5 months ago</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Woke up with no hot water. Brandon answered before 8am and was here within an hour. New water heater installed that same morning."</p>
+        <div class="review-author">Austin W.</div>
+        <div class="review-time">7 months ago</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Called 20 places after our pipes froze on Christmas Day. They were the first to respond and got here within a day. Efficient and affordable."</p>
+        <div class="review-author">Tessa R.</div>
+        <div class="review-time">3 years ago</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"BET is the most reliable plumbing company I've come across in Pittsburgh. Professional, knowledgeable, timely. Prices are fair."</p>
+        <div class="review-author">LeQuira H.</div>
+        <div class="review-time">3 years ago</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Flew home from vacation to help me on Thanksgiving. I don't know anyone who has done that for a customer."</p>
+        <div class="review-author">Dana C.</div>
+        <div class="review-time">4 years ago</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Quoted less than half their competitor and were quick, professional, knowledgeable, and third generation. Won't consider another company."</p>
+        <div class="review-author">Spencer D.</div>
+        <div class="review-time">2 weeks ago</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Brandon is the only plumber we will use. We trust his work and he is a great communicator. Would recommend to any friend or family."</p>
+        <div class="review-author">shmaiken</div>
+        <div class="review-time">1 month ago</div>
+      </div>
+      <!-- Set 2 (duplicate for seamless loop) -->
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Called late in the evening and Brandon actually answered at 9 PM. Not only did he pick up, but he arrived relatively quickly to help."</p>
+        <div class="review-author">Marco A.</div>
+        <div class="review-time">2 months ago</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Friendly, honest, prompt, dependable, calls you back, and does good work at a fair price. BET has become our go-to and will be for years to come."</p>
+        <div class="review-author">Adam B.</div>
+        <div class="review-time">5 months ago</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Woke up with no hot water. Brandon answered before 8am and was here within an hour. New water heater installed that same morning."</p>
+        <div class="review-author">Austin W.</div>
+        <div class="review-time">7 months ago</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Called 20 places after our pipes froze on Christmas Day. They were the first to respond and got here within a day. Efficient and affordable."</p>
+        <div class="review-author">Tessa R.</div>
+        <div class="review-time">3 years ago</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"BET is the most reliable plumbing company I've come across in Pittsburgh. Professional, knowledgeable, timely. Prices are fair."</p>
+        <div class="review-author">LeQuira H.</div>
+        <div class="review-time">3 years ago</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Flew home from vacation to help me on Thanksgiving. I don't know anyone who has done that for a customer."</p>
+        <div class="review-author">Dana C.</div>
+        <div class="review-time">4 years ago</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Quoted less than half their competitor and were quick, professional, knowledgeable, and third generation. Won't consider another company."</p>
+        <div class="review-author">Spencer D.</div>
+        <div class="review-time">2 weeks ago</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Brandon is the only plumber we will use. We trust his work and he is a great communicator. Would recommend to any friend or family."</p>
+        <div class="review-author">shmaiken</div>
+        <div class="review-time">1 month ago</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EMERGENCY CTA -->
+<div class="emergency-section reveal">
+  <div>
+    <div class="emergency-label">// Emergency Service</div>
+    <h2 class="emergency-title">Plumbing Crisis?<br>We're a Phone Call Away.</h2>
+    <p class="emergency-desc">Brandon answers personally — nights, weekends, and yes, even on vacation. If you have a real emergency, we will find a way to help you today.</p>
+  </div>
+  <div class="emergency-cta">
+    <div class="phone-display">
+      <a href="tel:4127336355" class="phone-num">(412) 733-6355</a>
+      <div class="phone-label">Call or Text Anytime</div>
+    </div>
+    <a href="tel:4127336355" class="btn-primary">Call Now — It's Free</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="nav-logo">B.E.T.<span style="color:var(--gold)">•</span>PLUMBING</span>
+      <p>Pittsburgh's most trusted independent plumber. Family-owned, third generation, and built on honesty. Serving the Greater Pittsburgh area since day one.</p>
+      <p style="margin-top:1rem; font-size:0.8rem; color:var(--gold)">★★★★★ 5.0 · 104 Reviews</p>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#">Water Heater</a></li>
+        <li><a href="#">Drain Cleaning</a></li>
+        <li><a href="#">Pipe Repair</a></li>
+        <li><a href="#">Gas Lines</a></li>
+        <li><a href="#">Sewer Service</a></li>
+        <li><a href="#">Emergency</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#">About Brandon</a></li>
+        <li><a href="#">Reviews</a></li>
+        <li><a href="#">Service Areas</a></li>
+        <li><a href="#">Get a Quote</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="tel:4127336355">(412) 733-6355</a></li>
+        <li><a href="#">121 Ingram Ave</a></li>
+        <li><a href="#">Pittsburgh, PA 15205</a></li>
+        <li><a href="#">Mon–Fri: 7am–5pm</a></li>
+        <li><a href="#">Emergency: Anytime</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 B.E.T. Plumbing LLC. All rights reserved. Pittsburgh, PA.</span>
+    <span>Built with pride for Pittsburgh's finest plumber · <a href="tel:4127336355">(412) 733-6355</a></span>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(r => observer.observe(r));
+
+  // AJAX form submission — no page navigation
+  document.getElementById('quoteForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('formBtn');
+    btn.textContent = 'Sending…';
+    btn.style.opacity = '0.75';
+    btn.disabled = true;
+
+    const formData = new FormData(this);
+
+    fetch('https://formsubmit.co/ajax/alharirimohammadnour@gmail.com', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json' },
+      body: formData
+    })
+    .then(res => res.json())
+    .then(data => {
+      // Show success state inside the card
+      document.getElementById('quoteForm').innerHTML = `
+        <div style="text-align:center; padding: 2rem 0;">
+          <div style="font-size:2.5rem; margin-bottom:1rem;">✅</div>
+          <div style="font-family:'Playfair Display',serif; font-size:1.2rem; color:var(--white); margin-bottom:0.5rem;">Request Sent!</div>
+          <p style="font-size:0.85rem; color:var(--text-muted); line-height:1.7;">
+            Brandon will be in touch shortly.<br>For urgent issues, call directly:<br>
+            <a href="tel:4127336355" style="color:var(--gold); font-weight:500;">(412) 733-6355</a>
+          </p>
+        </div>
+      `;
+    })
+    .catch(err => {
+      btn.textContent = 'Something went wrong — please call us';
+      btn.style.background = '#7a2d2d';
+      btn.style.color = '#fff';
+      btn.style.opacity = '1';
+      btn.disabled = false;
+    });
+  });
+</script>
+</body>
+</html>
