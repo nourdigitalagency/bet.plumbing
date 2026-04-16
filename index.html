@@ -463,7 +463,7 @@
   }
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
-  /* MOBILE */
+    /* MOBILE */
   @media (max-width: 900px) {
     nav { padding: 1rem 1.5rem; }
     .nav-links { display: none; }
@@ -478,18 +478,35 @@
     .emergency-section { margin: 0 2rem 4rem; padding: 2.5rem; grid-template-columns: 1fr; }
     .emergency-cta { align-items: flex-start; }
     .emergency-section::before { display: none; }
-    .footer-inner { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .footer-inner { grid-template-columns: 1fr !important; gap: 3.5rem; text-align: center; }
     .trust-bar { padding: 1rem 2rem; }
     .hero-stats { gap: 1.5rem; }
     .why-pillars { grid-template-columns: 1fr; }
-  }
-    /* PROJECT GALLERY */
+
+    /* THE FIX IS NOW INSIDE THE BRACKET */
+    .footer-bottom {
+      flex-direction: column;
+      gap: 1.5rem;
+      text-align: center;
+      padding-top: 2rem;
+    }
+    .footer-col ul {
+      align-items: center;
+    }
+    .footer-brand {
+      align-items: center;
+      text-align: center;
+    }
+  } /* <--- THIS BRACKET NOW PROPERLY CLOSES THE MOBILE SECTION */
+
+  /* PROJECT GALLERY (Global Styles - Leave this outside) */
   .gallery-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1.5rem;
     margin-top: 3.5rem;
   }
+
   .gallery-item {
     background: var(--navy-mid);
     border: 1px solid rgba(201,168,76,0.15);
